@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
@@ -11,11 +11,51 @@
     
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                800: '#075985',
+                900: '#0c4a6e',
+              },
+              dark: {
+                900: '#0f172a',
+                800: '#1e293b',
+                700: '#334155',
+                600: '#475569',
+                500: '#64748b',
+              }
+            },
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif'],
+              inter: ['Inter', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
 
     <!-- Google Translate -->
     <script type="text/javascript">
       function googleTranslateElementInit() {
-        new google.translate.TranslateElement({ pageLanguage: "en" }, "google_translate_element");
+        new google.translate.TranslateElement({
+          pageLanguage: "en",
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          includedLanguages: "en,es,fr,de,it,pt,ru,zh-CN,ja,ko,ar",
+          autoDisplay: false
+        }, "google_translate_element");
       }
     </script>
     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -24,20 +64,129 @@
 
     <style>
       body {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Inter', sans-serif;
         background: linear-gradient(135deg, #0f172a 0, #1e293b 100%);
         color: #f1f5f9;
       }
-      #google_translate_element {
+      
+      /* Professional Translator Styling */
+      .translator-container {
         position: fixed;
-        top: 10px;
-        right: 10px;
+        top: 20px;
+        right: 20px;
         z-index: 9999;
-        background: white;
-        padding: 5px 10px;
-        border-radius: 6px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(30, 41, 59, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 8px 16px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,.3), 0 8px 10px -6px rgba(0,0,0,.1);
+        border: 1px solid #334155;
+        transition: all 0.3s ease;
       }
+      
+      .translator-container:hover {
+        box-shadow: 0 15px 30px -5px rgba(0,0,0,.4);
+        transform: translateY(-2px);
+      }
+      
+      .language-indicator {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: #e2e8f0;
+      }
+      
+      .language-indicator::before {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #0ea5e9;
+      }
+      
+      /* Hide Google branding and unnecessary elements */
+      .skiptranslate {
+        display: none !important;
+      }
+      
+      .goog-te-gadget {
+        color: transparent !important;
+        font-size: 0 !important;
+      }
+      
+      .goog-te-combo {
+        background: rgba(15, 23, 42, 0.7) !important;
+        color: #e2e8f0 !important;
+        border: 1px solid #334155 !important;
+        border-radius: 8px !important;
+        padding: 8px 32px 8px 12px !important;
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230ea5e9'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 10px center !important;
+        background-size: 16px !important;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      }
+      
+      .goog-te-combo:hover {
+        border-color: #0ea5e9 !important;
+        box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2) !important;
+      }
+      
+      .goog-te-combo:focus {
+        outline: none;
+        border-color: #0ea5e9 !important;
+        box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.3) !important;
+      }
+      
+      /* Dropdown menu styling */
+      .goog-te-menu2 {
+        background: #1e293b !important;
+        border: 1px solid #334155 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1) !important;
+        overflow: hidden;
+        margin-top: 8px !important;
+      }
+      
+      .goog-te-menu2-item {
+        color: #e2e8f0 !important;
+        padding: 10px 16px !important;
+        font-size: 0.9rem !important;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid #334155 !important;
+      }
+      
+      .goog-te-menu2-item:last-child {
+        border-bottom: none !important;
+      }
+      
+      .goog-te-menu2-item:hover {
+        background: #2563eb !important;
+        color: white !important;
+      }
+      
+      .goog-te-menu2-item div, 
+      .goog-te-menu2-item span {
+        color: inherit !important;
+      }
+      
+      /* Active language highlight */
+      .goog-te-menu2-item-selected {
+        background: rgba(14, 165, 233, 0.15) !important;
+      }
+      
+      /* Original Styles */
       .font-poppins { font-family: Poppins, sans-serif }
       .gradient-bg { background: linear-gradient(135deg,#0ea5e9 0,#2563eb 100%) }
       .gradient-text { background: linear-gradient(135deg,#0ea5e9 0,#2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent }
@@ -62,6 +211,18 @@
         .sidebar { box-shadow: 2px 0 10px rgba(0,0,0,.1) }
         .nav-btn span { transition: all .3s ease }
         .sidebar-overlay { transition: opacity .3s ease }
+        .translator-container {
+          top: 15px;
+          right: 15px;
+          padding: 6px 12px;
+        }
+        .language-indicator {
+          font-size: 0.8rem;
+        }
+        .goog-te-combo {
+          padding: 6px 28px 6px 10px !important;
+          font-size: 0.85rem !important;
+        }
       }
       @media (min-width: 768px) {
         .sidebar { transform: translateX(0)!important }
@@ -70,7 +231,7 @@
 
     <!-- Icons and Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- React App -->
     <script defer="defer" src="/static/js/main.1184ff25.js"></script>
@@ -80,10 +241,46 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <!-- Translator Widget -->
-    <div id="google_translate_element"></div>
+    <!-- Professional Translator Widget -->
+    <div class="translator-container">
+      <div class="language-indicator" id="current-language">English</div>
+      <div id="google_translate_element"></div>
+    </div>
 
     <!-- React App Mount Point -->
     <div id="root"></div>
+    
+    <script>
+      // Update language indicator when language changes
+      document.addEventListener('DOMContentLoaded', function() {
+        // Function to update language display
+        function updateLanguageDisplay() {
+          const langSelect = document.querySelector('.goog-te-combo');
+          if (langSelect) {
+            const selectedOption = langSelect.options[langSelect.selectedIndex];
+            document.getElementById('current-language').textContent = selectedOption.text;
+          }
+        }
+        
+        // Initial update
+        setTimeout(updateLanguageDisplay, 1000);
+        
+        // Update on change
+        document.querySelector('.goog-te-combo')?.addEventListener('change', updateLanguageDisplay);
+        
+        // Periodically check for changes (fallback)
+        setInterval(updateLanguageDisplay, 2000);
+      });
+      
+      // Handle Google Translate iframe behavior
+      window.addEventListener('load', function() {
+        const iframes = document.getElementsByTagName('iframe');
+        for (let i = 0; i < iframes.length; i++) {
+          if (iframes[i].title === 'Language Translate Widget') {
+            iframes[i].style.zIndex = '10000';
+          }
+        }
+      });
+    </script>
   </body>
 </html>
