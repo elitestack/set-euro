@@ -23,21 +23,41 @@
     <title>Procoin Trading and Investment</title>
 
     <style>
-      body {
-        font-family: 'Open Sans', sans-serif;
-        background: linear-gradient(135deg, #0f172a 0, #1e293b 100%);
-        color: #f1f5f9;
-      }
-      #google_translate_element {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        z-index: 9999;
-        background: white;
-        padding: 5px 10px;
-        border-radius: 6px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      }
+     /* Add to your existing styles */
+body {
+  margin: 0; /* Remove default body margin */
+}
+
+#root {
+  position: relative;
+  padding-top: 50px; /* Creates space for translator */
+}
+
+#google_translate_element {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateZ(0); /* Fixes potential stacking issues */
+}
+
+
+@media (max-width: 768px) {
+  #google_translate_element {
+    top: 5px;
+    right: 5px;
+    transform: scale(0.9); /* Slightly reduce size on mobile */
+    transform-origin: top right;
+  }
+  
+  #root {
+    padding-top: 45px; /* Slightly less padding on mobile */
+  }
+}
 
 
       
@@ -84,7 +104,7 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
     <!-- Translator Widget -->
-    <div id="google_translate_element" class="mb-5"></div>
+    <div id="google_translate_element" class="mb"></div>
 
     <!-- React App Mount Point -->
     <div id="root"></div>
